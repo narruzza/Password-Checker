@@ -16,6 +16,8 @@ common_passwords = load_common_passwords('passwords.txt')
 # Set the user agent for the pyhibp API
 set_user_agent(ua="PassGuard")
 
+password_visible = False
+
 # Check password strength
 def check_password_strength(password):
     criteria_met = 0
@@ -98,6 +100,12 @@ def check_strength(event):
         pwned_label.color = colors[3]
         pwned_label.text = 'Not pwned! :)'
 
+def toggle_password_visibility(event):
+    global password_visible
+    password_input.toggle()
+    password_visible = not password_visible
+    toggle_button.text = 'Hide' if password_visible else 'Show'
+
 # Create the app
 app = gp.GooeyPieApp('PassGuard')
 
@@ -108,6 +116,9 @@ password_label.font = ('Arial', 12, 'bold')
 password_style_label = gp.StyleLabel(app,"Nick")
 
 password_input = gp.Secret(app)
+
+toggle_button = gp.Button(app, 'Show', toggle_password_visibility)
+toggle_button.font = ('Arial', 12)  # Adjust font size here
 
 check_button = gp.Button(app, 'Submit Password', check_strength)
 
@@ -120,14 +131,15 @@ pwned_label = gp.StyleLabel(app, '')
 pwned_label.font = ('Arial', 12)
 
 # Add the widgets
-app.set_grid(6, 2)
-app.set_column_weights(1, 2)
+app.set_grid(6, 3)
+app.set_column_weights(1, 2, 1)
 app.add(password_label, 1, 1, align='right')
 app.add(password_input, 1, 2, align='left')
-app.add(check_button, 2, 1, column_span=2, align='center')
-app.add(progress_bar, 3, 1, column_span=2, fill=True)
-app.add(strength_label, 4, 1, column_span=2, align='center')
-app.add(pwned_label, 5, 1, column_span=2, align='center')
+app.add(toggle_button, 1, 3, align='left')
+app.add(check_button, 2, 1, column_span=3, align='center')
+app.add(progress_bar, 3, 1, column_span=3, fill=True)
+app.add(strength_label, 4, 1, column_span=3, align='center')
+app.add(pwned_label, 5, 1, column_span=3, align='center')
 
 # Run the app
 app.run()
