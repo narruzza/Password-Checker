@@ -18,18 +18,28 @@ common_passwords = load_common_passwords('passwords.txt')
 set_user_agent(ua="PassGuard")
 
 password_visible = False
+password_strength = 0
+password_suggestions = []
+suggestions_window = None
 
 # Check password strength
 def check_password_strength(password):
+    global password_suggestions
     criteria_met = 0
+    suggestions = set()
 
     # Check length
     if len(password) >= 8:
         criteria_met += 1
+    else:
+        suggestions.add("Increase length to at least 8 characters.")
     if len(password) >= 12:
         criteria_met += 1
+    else:
+        suggestions.add("Increase length to at least 12 characters.")
     if len(password) <= 6:
         criteria_met -= 2
+
     # Check for numbers
     has_number = False
     for char in password:
@@ -38,6 +48,8 @@ def check_password_strength(password):
             break
     if has_number:
         criteria_met += 1
+    else:
+        suggestions.add("Include at least one number.")
 
     # Check for uppercase
     has_uppercase = False
@@ -47,21 +59,26 @@ def check_password_strength(password):
             break
     if has_uppercase:
         criteria_met += 1
+    else:
+        suggestions.add("Include at least one uppercase letter.")
 
     # Check for special characters
     for char in password:
         if not char.isalnum():
             criteria_met += 1
-            break
+        else:
+            suggestions.add("Include at least one special character.")
 
     # Check if password is in the common passwords list
     if password in common_passwords:
         criteria_met = 0  # Set strength to 0 if password is common
+        suggestions.add("Avoid using common passwords.")
 
     # Calculate strength as a percentage with the criteria met
     if criteria_met < 0:
         criteria_met = 0
     strength = (criteria_met / 5) * 100
+    password_suggestions = list(suggestions)
 
     return strength
 
@@ -69,7 +86,7 @@ def check_password_strength(password):
 def check_strength(event):
     password = password_input.text
     strength = check_password_strength(password)
-
+    
     # Check if the password has been pwned
     try:
         pwned_count = pwnedpasswords.is_password_breached(password)
@@ -119,6 +136,17 @@ def copy_password(event):
 def reset_copy_button():
     copy_button.text = 'Copy'
 
+# Suggestions window
+def show_suggestions(event):
+    suggestions_window = gp.GooeyPieApp('Password Suggestions')
+    suggestions_window.set_grid(2, 1)
+    suggestions_label = gp.Label(suggestions_window, '\n'.join(password_suggestions))
+    suggestions_title = gp.Label(suggestions_window, 'Try imporving your password with these suggestions:')
+    suggestions_window.add(suggestions_label, 2, 1)
+    suggestions_window.add(suggestions_title, 1, 1)
+    suggestions_window._root.iconphoto = lambda *args: None  # Disable iconphoto
+    suggestions_window.run()
+
 # Create the app
 app = gp.GooeyPieApp('PassGuard')
 
@@ -133,6 +161,8 @@ password_input = gp.Secret(app)
 toggle_button = gp.Button(app, 'Show', toggle_password_visibility)
 toggle_button.font = ('Arial', 12)  # Adjust font size here
 
+suggestions_button = gp.Button(app, 'Show Suggestions', show_suggestions)
+
 check_button = gp.Button(app, 'Submit Password', check_strength)
 
 copy_button = gp.Button(app, 'Copy Password', copy_password)
@@ -146,16 +176,17 @@ pwned_label = gp.StyleLabel(app, '')
 pwned_label.font = ('Arial', 12)
 
 # Add the widgets
-app.set_grid(8, 3)
+app.set_grid(9, 3)
 app.set_column_weights(1, 2, 1)
 app.add(password_label, 1, 1, align='right')
 app.add(password_input, 1, 2, align='left')
 app.add(toggle_button, 1, 3, align='left')
 app.add(check_button, 2, 1, column_span=3, align='center')
 app.add(copy_button, 3, 1, column_span=3, align='center')
-app.add(progress_bar, 4, 1, column_span=3, fill=True)
-app.add(strength_label, 5, 1, column_span=3, align='center')
-app.add(pwned_label, 6, 1, column_span=3, align='center')
+app.add(suggestions_button, 4, 1, column_span=3, align='center')
+app.add(progress_bar, 5, 1, column_span=3, fill=True)
+app.add(strength_label, 6, 1, column_span=3, align='center')
+app.add(pwned_label, 7, 1, column_span=3, align='center')
 
 # Run the app
 app.run()
