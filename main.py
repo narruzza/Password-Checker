@@ -1,6 +1,7 @@
 import gooeypie as gp
 from pyhibp import pwnedpasswords
 from pyhibp import set_user_agent
+import pyperclip
 
 colors = ['Red', 'Orange', 'Yellow', 'LimeGreen', 'Green']
 
@@ -27,7 +28,7 @@ def check_password_strength(password):
         criteria_met += 1
     if len(password) >= 12:
         criteria_met += 1
-    if len(password) <= 7:
+    if len(password) <= 6:
         criteria_met -= 2
     # Check for numbers
     has_number = False
@@ -58,6 +59,8 @@ def check_password_strength(password):
         criteria_met = 0  # Set strength to 0 if password is common
 
     # Calculate strength as a percentage with the criteria met
+    if criteria_met < 0:
+        criteria_met = 0
     strength = (criteria_met / 5) * 100
 
     return strength
@@ -106,6 +109,16 @@ def toggle_password_visibility(event):
     password_visible = not password_visible
     toggle_button.text = 'Hide' if password_visible else 'Show'
 
+# Copy password
+def copy_password(event):
+    pyperclip.copy(password_input.text)
+    copy_button.text = 'Copied!'
+    app.after(2000, reset_copy_button)  # Reset the button text after 2 seconds
+
+# Reset copy button text
+def reset_copy_button():
+    copy_button.text = 'Copy'
+
 # Create the app
 app = gp.GooeyPieApp('PassGuard')
 
@@ -122,6 +135,8 @@ toggle_button.font = ('Arial', 12)  # Adjust font size here
 
 check_button = gp.Button(app, 'Submit Password', check_strength)
 
+copy_button = gp.Button(app, 'Copy Password', copy_password)
+
 progress_bar = gp.Progressbar(app)
 
 strength_label = gp.StyleLabel(app, '')
@@ -131,15 +146,16 @@ pwned_label = gp.StyleLabel(app, '')
 pwned_label.font = ('Arial', 12)
 
 # Add the widgets
-app.set_grid(6, 3)
+app.set_grid(8, 3)
 app.set_column_weights(1, 2, 1)
 app.add(password_label, 1, 1, align='right')
 app.add(password_input, 1, 2, align='left')
 app.add(toggle_button, 1, 3, align='left')
 app.add(check_button, 2, 1, column_span=3, align='center')
-app.add(progress_bar, 3, 1, column_span=3, fill=True)
-app.add(strength_label, 4, 1, column_span=3, align='center')
-app.add(pwned_label, 5, 1, column_span=3, align='center')
+app.add(copy_button, 3, 1, column_span=3, align='center')
+app.add(progress_bar, 4, 1, column_span=3, fill=True)
+app.add(strength_label, 5, 1, column_span=3, align='center')
+app.add(pwned_label, 6, 1, column_span=3, align='center')
 
 # Run the app
 app.run()
