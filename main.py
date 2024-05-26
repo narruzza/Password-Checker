@@ -98,19 +98,19 @@ def check_strength(event):
     progress_bar.value = strength
     if strength >= 0 and strength < 20:
         strength_label.color = colors[0]
-        strength_label.text = 'Password Strength: Beta ahh password'
+        strength_label.text = 'Password Strength: Beta'
     elif strength >= 20 and strength < 40:
         strength_label.color = colors[1]
-        strength_label.text = 'Password Strength: Weak ahh password'
+        strength_label.text = 'Password Strength: Weak'
     elif strength >= 40 and strength < 60:
         strength_label.color = colors[2]
-        strength_label.text = 'Password Strength: Mid ahh password'
+        strength_label.text = 'Password Strength: Mid'
     elif strength >= 60 and strength < 80:
         strength_label.color = colors[3]
-        strength_label.text = 'Password Strength: Strong ahh password'
+        strength_label.text = 'Password Strength: Strong'
     elif strength >= 80 and strength <= 100:
         strength_label.color = colors[4]
-        strength_label.text = 'Password Strength: Sigma ahh password'
+        strength_label.text = 'Password Strength: Sigma'
     
     # Update the pwned label
     if pwned_count > 0:
@@ -176,17 +176,17 @@ pwned_label = gp.StyleLabel(app, '')
 pwned_label.font = ('Arial', 12)
 
 # Add the widgets
-app.set_grid(9, 3)
-app.set_column_weights(1, 2, 1)
-app.add(password_label, 1, 1, align='right')
-app.add(password_input, 1, 2, align='left')
-app.add(toggle_button, 1, 3, align='left')
-app.add(check_button, 2, 1, column_span=3, align='center')
-app.add(copy_button, 3, 1, column_span=3, align='center')
-app.add(suggestions_button, 4, 1, column_span=3, align='center')
+app.set_grid(7, 3)
+app.set_column_weights(1, 1, 1)
+app.add(password_label, 1, 2, align='center')
+app.add(password_input, 2, 2, align='center')
+app.add(toggle_button, 3, 1, align='center')
+app.add(check_button, 3, 2, align='center')
+app.add(copy_button, 3, 3, align='center')
+app.add(strength_label, 4, 2, align='center')
 app.add(progress_bar, 5, 1, column_span=3, fill=True)
-app.add(strength_label, 6, 1, column_span=3, align='center')
-app.add(pwned_label, 7, 1, column_span=3, align='center')
+app.add(pwned_label, 6, 1, column_span=3, align='center')
+app.add(suggestions_button, 7, 1, align='left')
 
 # Run the app
 app.run()
