@@ -21,6 +21,7 @@ password_visible = False
 password_strength = 0
 password_suggestions = []
 suggestions_window = None
+info_window = None
 
 # Check password strength
 def check_password_strength(password):
@@ -119,6 +120,8 @@ def check_strength(event):
     else:
         pwned_label.color = colors[3]
         pwned_label.text = 'Not pwned! :)'
+    
+
 
 def toggle_password_visibility(event):
     global password_visible
@@ -147,6 +150,23 @@ def show_suggestions(event):
     suggestions_window._root.iconphoto = lambda *args: None  # Disable iconphoto
     suggestions_window.run()
 
+def show_info(event):
+    global info_window
+    info_window = gp.GooeyPieApp('Password Strength Information')
+    info_window.set_grid(1, 1)
+    info_text = ("Password strength is determined based on the following criteria:\n"
+                 "1. Length: At least 8 characters for a minimum strength.\n"
+                 "2. Length: At least 12 characters for additional strength.\n"
+                 "3. Inclusion of numbers: At least one numerical digit.\n"
+                 "4. Inclusion of uppercase letters: At least one uppercase letter.\n"
+                 "5. Inclusion of special characters: At least one special character (e.g., @, #, $).\n"
+                 "6. Common passwords: Password should not be in the list of common passwords.\n"
+                 "Each criterion met adds to the overall strength of the password, calculated as a percentage.")
+    info_label = gp.Label(info_window, info_text)
+    info_window.add(info_label, 1, 1)
+    info_window._root.iconphoto = lambda *args: None  # Disable iconphoto
+    info_window.run()
+
 # Create the app
 app = gp.GooeyPieApp('PassGuard')
 
@@ -163,6 +183,8 @@ toggle_button.font = ('Arial', 12)  # Adjust font size here
 
 suggestions_button = gp.Button(app, 'Show Suggestions', show_suggestions)
 
+info_button = gp.Button(app, 'Info', show_info)
+
 check_button = gp.Button(app, 'Submit Password', check_strength)
 
 copy_button = gp.Button(app, 'Copy Password', copy_password)
@@ -176,7 +198,7 @@ pwned_label = gp.StyleLabel(app, '')
 pwned_label.font = ('Arial', 12)
 
 # Add the widgets
-app.set_grid(7, 3)
+app.set_grid(8, 3)
 app.set_column_weights(1, 1, 1)
 app.add(password_label, 1, 2, align='center')
 app.add(password_input, 2, 2, align='center')
@@ -186,7 +208,8 @@ app.add(copy_button, 3, 3, align='center')
 app.add(strength_label, 4, 2, align='center')
 app.add(progress_bar, 5, 1, column_span=3, fill=True)
 app.add(pwned_label, 6, 1, column_span=3, align='center')
-app.add(suggestions_button, 7, 1, align='left')
+app.add(suggestions_button, 8, 1, align='left')
+app.add(info_button, 8, 3, align='right')
 
 # Run the app
 app.run()
