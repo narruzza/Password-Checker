@@ -2,6 +2,7 @@ import gooeypie as gp
 from pyhibp import pwnedpasswords
 from pyhibp import set_user_agent
 import pyperclip
+import zxcvbn
 
 colors = ['Red', 'Orange', 'Yellow', 'LimeGreen', 'Green']
 
@@ -121,7 +122,9 @@ def check_strength(event):
         pwned_label.color = colors[3]
         pwned_label.text = 'Not pwned! :)'
     
-
+    # Use zxcvbn to estimate crack time
+    zxcvbn_result = zxcvbn.zxcvbn(password)
+    crack_time_label.text = f"Estimated crack time: {zxcvbn_result['crack_times_display']['offline_slow_hashing_1e4_per_second']}"
 
 def toggle_password_visibility(event):
     global password_visible
@@ -197,6 +200,8 @@ strength_label.font = ('Arial', 12)
 pwned_label = gp.StyleLabel(app, '')
 pwned_label.font = ('Arial', 12)
 
+crack_time_label = gp.Label(app, '')
+
 # Add the widgets
 app.set_grid(8, 3)
 app.set_column_weights(1, 1, 1)
@@ -208,6 +213,7 @@ app.add(copy_button, 3, 3, align='center')
 app.add(strength_label, 4, 2, align='center')
 app.add(progress_bar, 5, 1, column_span=3, fill=True)
 app.add(pwned_label, 6, 1, column_span=3, align='center')
+app.add(crack_time_label, 7, 1, column_span=3, align='center')
 app.add(suggestions_button, 8, 1, align='left')
 app.add(info_button, 8, 3, align='right')
 
