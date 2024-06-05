@@ -1,3 +1,4 @@
+import requests
 import gooeypie as gp
 from pyhibp import pwnedpasswords
 from pyhibp import set_user_agent
@@ -88,13 +89,21 @@ def check_password_strength(password):
 def check_strength(event):
     password = password_input.text
     strength = check_password_strength(password)
+    pwned_count = 0
     
     # Check if the password has been pwned
     try:
+        response = requests.get("https://haveibeenpwned.com/api/v3/breaches")
+        response.raise_for_status()
         pwned_count = pwnedpasswords.is_password_breached(password)
+    except requests.exceptions.RequestException as e:
+        pwned_count = None
+        pwned_label.text = 'HIBP check not working on current connection'
+        print(f'RequestException: {e}')
     except Exception as e:
-        pwned_count = 0
+        pwned_count = None
         pwned_label.text = f'Error checking password: {e}'
+        print(f'Exception: {e}')
 
     # Update the progress bar and strength thingy
     progress_bar.value = strength
@@ -117,7 +126,7 @@ def check_strength(event):
     # Update the pwned label
     if pwned_count > 0:
         pwned_label.color = colors[0]
-        pwned_label.text = f'Your fucked. Seen {pwned_count} times in data breaches'
+        pwned_label.text = f'Your cooked. Seen {pwned_count} times in data breaches'
     else:
         pwned_label.color = colors[3]
         pwned_label.text = 'Not pwned! :)'
@@ -146,8 +155,10 @@ def reset_copy_button():
 def show_suggestions(event):
     suggestions_window = gp.GooeyPieApp('Password Suggestions')
     suggestions_window.set_grid(2, 1)
-    suggestions_label = gp.Label(suggestions_window, '\n'.join(password_suggestions))
-    suggestions_title = gp.Label(suggestions_window, 'Try imporving your password with these suggestions:')
+    suggestions_label = gp.StyleLabel(suggestions_window, '\n'.join(password_suggestions))
+    suggestions_label.font_name = ('Bradley Hand')
+    suggestions_title = gp.StyleLabel(suggestions_window, 'Try imporving your password with these suggestions:')
+    suggestions_title.font_name = ('Bradley Hand')
     suggestions_window.add(suggestions_label, 2, 1)
     suggestions_window.add(suggestions_title, 1, 1)
     suggestions_window._root.iconphoto = lambda *args: None  # Disable iconphoto
@@ -165,7 +176,8 @@ def show_info(event):
                  "5. Inclusion of special characters: At least one special character (e.g., @, #, $).\n"
                  "6. Common passwords: Password should not be in the list of common passwords.\n"
                  "Each criterion met adds to the overall strength of the password, calculated as a percentage.")
-    info_label = gp.Label(info_window, info_text)
+    info_label = gp.StyleLabel(info_window, info_text)
+    info_label.font_name = ('Bradley Hand')
     info_window.add(info_label, 1, 1)
     info_window._root.iconphoto = lambda *args: None  # Disable iconphoto
     info_window.run()
@@ -174,15 +186,15 @@ def show_info(event):
 app = gp.GooeyPieApp('PassGuard')
 
 # Create widgets
-password_label = gp.Label(app, 'Enter your password:')
-password_label.font = ('Arial', 12, 'bold')
+password_label = gp.StyleLabel(app, 'Enter your password:')
+password_label.font_name = ('Bradley Hand')
 
 password_style_label = gp.StyleLabel(app,"Nick")
+password_style_label.font_name = ('Bradley Hand')
 
 password_input = gp.Secret(app)
 
 toggle_button = gp.Button(app, 'Show', toggle_password_visibility)
-toggle_button.font = ('Arial', 12)  # Adjust font size here
 
 suggestions_button = gp.Button(app, 'Show Suggestions', show_suggestions)
 
@@ -195,12 +207,13 @@ copy_button = gp.Button(app, 'Copy Password', copy_password)
 progress_bar = gp.Progressbar(app)
 
 strength_label = gp.StyleLabel(app, '')
-strength_label.font = ('Arial', 12)
+strength_label.font_name = ('Bradley Hand')
 
 pwned_label = gp.StyleLabel(app, '')
-pwned_label.font = ('Arial', 12)
+pwned_label.font_name = ('Bradley Hand')
 
-crack_time_label = gp.Label(app, '')
+crack_time_label = gp.StyleLabel(app, '')
+crack_time_label.font_name = ('Bradley Hand')
 
 # Add the widgets
 app.set_grid(8, 3)
