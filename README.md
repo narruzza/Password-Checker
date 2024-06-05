@@ -1,6 +1,6 @@
 # Password Strength Checker
 
-![Logo](path/to/your/logo.png)  <!-- Replace with the actual path to your logo -->
+![Logo](https://github.com/narruzza/Password-Checker/blob/master/DALL%C2%B7E%20June%203%20Logo%20for%20PassGuard.jpg?raw=true)
 
 Welcome to the **Password Strength Checker** app! This tool is designed to help users evaluate the strength of their passwords to ensure they are strong and secure.
 
