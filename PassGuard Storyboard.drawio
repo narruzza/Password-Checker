@@ -1,0 +1,102 @@
+<mxfile host="65bd71144e">
+    <diagram name="Page-1" id="UHkXcnCmw9-Nop23rr-n">
+        <mxGraphModel dx="889" dy="647" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="ym8xDnI4zUhROqJ30JRd-1" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="100" y="150" width="600" height="360" as="geometry"/>
+                </mxCell>
+                <mxCell id="ym8xDnI4zUhROqJ30JRd-10" value="⚪️⚪️⚪️⚪️⚪️⚪️⚪️" style="strokeWidth=1;shadow=1;dashed=0;align=center;html=1;shape=mxgraph.mockup.text.textBox;fontColor=#666666;align=left;fontSize=17;spacingLeft=4;spacingTop=-3;whiteSpace=wrap;strokeColor=#666666;mainText=" parent="1" vertex="1">
+                    <mxGeometry x="308" y="172" width="270" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="ym8xDnI4zUhROqJ30JRd-15" value="&lt;h1&gt;&lt;br&gt;&lt;/h1&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="120" y="270" width="130" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="ym8xDnI4zUhROqJ30JRd-104" value="&lt;h1 style=&quot;text-align: right;&quot;&gt;&lt;span style=&quot;background-color: initial; font-size: 12px; font-weight: normal;&quot;&gt;&lt;font face=&quot;Bradley Hand&quot;&gt;Your Password:&lt;/font&gt;&lt;/span&gt;&lt;br&gt;&lt;/h1&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="209" y="162" width="100" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="ym8xDnI4zUhROqJ30JRd-127" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;curved=1;" parent="1" target="ym8xDnI4zUhROqJ30JRd-110" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="670" y="455" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="ym8xDnI4zUhROqJ30JRd-110" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="770" y="416" width="440" height="304" as="geometry"/>
+                </mxCell>
+                <mxCell id="ym8xDnI4zUhROqJ30JRd-111" value="&lt;h1&gt;Information&lt;/h1&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="782.5" y="456" width="395" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="ym8xDnI4zUhROqJ30JRd-113" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="100" y="120" width="600" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="ym8xDnI4zUhROqJ30JRd-114" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;X&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="660" y="120" width="40" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="ym8xDnI4zUhROqJ30JRd-117" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="770" y="416" width="415" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="ym8xDnI4zUhROqJ30JRd-120" value="X" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="1175" y="416" width="35" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="ym8xDnI4zUhROqJ30JRd-124" value="&lt;div style=&quot;line-height: 18px;&quot;&gt;&lt;h4 style=&quot;&quot;&gt;&lt;font face=&quot;Bradley Hand&quot; style=&quot;&quot; color=&quot;#fffbfa&quot;&gt;Password strength is determined based on the following criteria:&lt;br&gt;1. Length: At least 8 characters for a minimum strength.&lt;br&gt;2. Length: At least 12 characters for additional strength.&lt;br&gt;3. Inclusion of numbers: At least one numerical digit.&lt;br&gt;4. Inclusion of uppercase letters: At least one uppercase letter.&lt;br&gt;5. Inclusion of special characters: At least one special character (e.g., @, #, $).&lt;br&gt;6. Common passwords: Password should not be in the list of common passwords.&lt;br&gt;Each criterion met adds to the overall strength of the password, calculated as a percentage.&lt;/font&gt;&lt;/h4&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="782.5" y="487" width="390" height="288" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;&lt;font face=&quot;Bradley Hand&quot;&gt;Copy&lt;/font&gt;&lt;/span&gt;" style="rounded=1;html=1;shadow=1;dashed=0;whiteSpace=wrap;fontSize=10;fillColor=#FFFFFF;align=center;strokeColor=#666666;fontColor=#333333;" parent="1" vertex="1">
+                    <mxGeometry x="530" y="215" width="130" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="5" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;&lt;font face=&quot;Bradley Hand&quot;&gt;Submit&lt;/font&gt;&lt;/span&gt;" style="rounded=1;html=1;shadow=1;dashed=0;whiteSpace=wrap;fontSize=10;fillColor=#FFFFFF;align=center;strokeColor=#666666;fontColor=#333333;" parent="1" vertex="1">
+                    <mxGeometry x="339" y="215" width="130" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;&lt;font face=&quot;Bradley Hand&quot;&gt;Show/Hide&lt;/font&gt;&lt;/span&gt;" style="rounded=1;html=1;shadow=1;dashed=0;whiteSpace=wrap;fontSize=10;fillColor=#FFFFFF;align=center;strokeColor=#666666;fontColor=#333333;" parent="1" vertex="1">
+                    <mxGeometry x="148" y="215" width="130" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="ym8xDnI4zUhROqJ30JRd-3" value="&lt;h1&gt;PassGuard&lt;/h1&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="326" y="115" width="395" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;&lt;font face=&quot;Bradley Hand&quot;&gt;Suggestions&lt;/font&gt;&lt;/span&gt;" style="rounded=1;html=1;shadow=1;dashed=0;whiteSpace=wrap;fontSize=10;fillColor=#FFFFFF;align=center;strokeColor=#666666;fontColor=#333333;" parent="1" vertex="1">
+                    <mxGeometry x="124" y="448" width="130" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="8" value="&lt;span style=&quot;font-size: 14px;&quot;&gt;&lt;font face=&quot;Bradley Hand&quot;&gt;Info&lt;/font&gt;&lt;/span&gt;" style="rounded=1;html=1;shadow=1;dashed=0;whiteSpace=wrap;fontSize=10;fillColor=#FFFFFF;align=center;strokeColor=#666666;fontColor=#333333;" parent="1" vertex="1">
+                    <mxGeometry x="540" y="448" width="130" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="9" value="&lt;h1 style=&quot;text-align: right;&quot;&gt;&lt;span style=&quot;background-color: initial; font-size: 12px; font-weight: normal;&quot;&gt;&lt;font color=&quot;#ebf05b&quot; face=&quot;Bradley Hand&quot;&gt;Strength: Weak&lt;/font&gt;&lt;/span&gt;&lt;br&gt;&lt;/h1&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="341" y="258" width="312" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="10" value="" style="html=1;shadow=0;dashed=0;shape=mxgraph.bootstrap.rrect;rSize=5;fillColor=#E9ECEF;strokeColor=none;labelBackgroundColor=none;fontFamily=Comic Sans MS;fontColor=#fffbfa;" parent="1" vertex="1">
+                    <mxGeometry x="109" y="310" width="578" height="12" as="geometry"/>
+                </mxCell>
+                <mxCell id="11" value="" style="html=1;shadow=0;dashed=0;shape=mxgraph.bootstrap.leftButton;rSize=5;fillColor=#FFBC26;strokeColor=none;resizeHeight=1;labelBackgroundColor=none;fontFamily=Comic Sans MS;fontColor=#fffbfa;" parent="10" vertex="1">
+                    <mxGeometry width="250" height="12" relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;curved=1;" parent="1" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="254" y="464" as="sourcePoint"/>
+                        <mxPoint x="354" y="564" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="15" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="145" y="568" width="440" height="304" as="geometry"/>
+                </mxCell>
+                <mxCell id="16" value="&lt;h1&gt;Suggestions&lt;/h1&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="157.5" y="608" width="395" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="17" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="145" y="568" width="415" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="18" value="X" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="550" y="568" width="35" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="19" value="&lt;div style=&quot;line-height: 18px;&quot;&gt;&lt;h4 style=&quot;&quot;&gt;&lt;font face=&quot;Bradley Hand&quot;&gt;Try improving your password &lt;span class=&quot;hljs-keyword&quot;&gt;with&lt;/span&gt; these suggestions:&amp;nbsp;&lt;/font&gt;&lt;/h4&gt;&lt;h4 style=&quot;&quot;&gt;&lt;font face=&quot;Bradley Hand&quot;&gt;&amp;nbsp;Include &lt;span class=&quot;hljs-keyword&quot;&gt;at&lt;/span&gt; least &lt;span class=&quot;hljs-keyword&quot;&gt;one&lt;/span&gt; uppercase letter.&amp;nbsp;&lt;/font&gt;&lt;/h4&gt;&lt;h4 style=&quot;&quot;&gt;&lt;font face=&quot;Bradley Hand&quot;&gt;Avoid &lt;span class=&quot;hljs-keyword&quot;&gt;using&lt;/span&gt; common passwords.&amp;nbsp;&lt;/font&gt;&lt;/h4&gt;&lt;h4 style=&quot;&quot;&gt;&lt;font face=&quot;Bradley Hand&quot;&gt;Include &lt;span class=&quot;hljs-keyword&quot;&gt;at&lt;/span&gt; least &lt;span class=&quot;hljs-keyword&quot;&gt;one&lt;/span&gt; special character.&lt;/font&gt;&lt;/h4&gt;&lt;h4 style=&quot;&quot;&gt;&lt;font face=&quot;Bradley Hand&quot;&gt;Increase length &lt;span class=&quot;hljs-keyword&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;hljs-keyword&quot;&gt;at&lt;/span&gt; least &lt;span class=&quot;hljs-number&quot;&gt;12&lt;/span&gt; characters.&lt;/font&gt;&lt;br&gt;&lt;/h4&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="157.5" y="648" width="390" height="288" as="geometry"/>
+                </mxCell>
+                <mxCell id="20" value="&lt;h1 style=&quot;text-align: right;&quot;&gt;&lt;font color=&quot;#f02a0c&quot; style=&quot;font-size: 12px; font-weight: normal;&quot; face=&quot;Bradley Hand&quot;&gt;&lt;span style=&quot;text-align: start; font-size: 0px;&quot;&gt;%3CmxGraphModel%3E%3Croot%3E%3CmxCell%20id%3D%220%22%2F%3E%3CmxCell%20id%3D%221%22%20parent%3D%220%22%2F%3E%3CmxCell%20id%3D%222%22%20value%3D%22%26lt%3Bh1%20style%3D%26quot%3Btext-align%3A%20right%3B%26quot%3B%26gt%3B%26lt%3Bspan%20style%3D%26quot%3Bbackground-color%3A%20initial%3B%20font-size%3A%2012px%3B%20font-weight%3A%20normal%3B%26quot%3B%26gt%3B%26lt%3Bfont%20face%3D%26quot%3BBradley%20Hand%26quot%3B%26gt%3BYour%20Password%3A%26lt%3B%2Ffont%26gt%3B%26lt%3B%2Fspan%26gt%3B%26lt%3Bbr%26gt%3B%26lt%3B%2Fh1%26gt%3B%22%20style%3D%22text%3Bhtml%3D1%3BstrokeColor%3Dnone%3BfillColor%3Dnone%3Bspacing%3D5%3BspacingTop%3D-20%3BwhiteSpace%3Dwrap%3Boverflow%3Dhidden%3Brounded%3D0%3B%22%20vertex%3D%221%22%20parent%3D%221%22%3E%3CmxGeometry%20x%3D%22209%22%20y%3D%22162%22%20width%3D%22100%22%20height%3D%2240%22%20as%3D%22geometry%22%2F%3E%3C%2FmxCell%3E%3C%2Froot%3E%3C%2FmxGraphModel%3E&lt;/span&gt;Your cooked. Seen 441285&lt;span style=&quot;text-align: left; font-size: 12px;&quot;&gt;&amp;nbsp;times in data breaches&lt;/span&gt;&lt;/font&gt;&lt;/h1&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="241" y="339" width="500" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="22" value="&lt;h1 style=&quot;text-align: right;&quot;&gt;&lt;span style=&quot;background-color: initial; font-size: 12px; font-weight: normal;&quot;&gt;&lt;font face=&quot;Bradley Hand&quot;&gt;Time to Crack: 12 Seconds&lt;/font&gt;&lt;/span&gt;&lt;br&gt;&lt;/h1&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="306" y="390" width="254" height="40" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
