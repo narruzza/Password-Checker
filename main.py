@@ -93,8 +93,6 @@ def check_strength(event):
     
     # Check if the password has been pwned
     try:
-        response = requests.get("https://haveibeenpwned.com/api/v3/breaches")
-        response.raise_for_status()
         pwned_count = pwnedpasswords.is_password_breached(password)
     except requests.exceptions.RequestException as e:
         pwned_count = None
@@ -109,61 +107,67 @@ def check_strength(event):
     progress_bar.value = strength
     if strength >= 0 and strength < 20:
         strength_label.color = colors[0]
-        strength_label.text = 'Password Strength: Beta'
+        strength_label.text = 'Password Strength: Very Weak'
     elif strength >= 20 and strength < 40:
         strength_label.color = colors[1]
         strength_label.text = 'Password Strength: Weak'
     elif strength >= 40 and strength < 60:
         strength_label.color = colors[2]
-        strength_label.text = 'Password Strength: Mid'
+        strength_label.text = 'Password Strength: Medium'
     elif strength >= 60 and strength < 80:
         strength_label.color = colors[3]
         strength_label.text = 'Password Strength: Strong'
     elif strength >= 80 and strength <= 100:
         strength_label.color = colors[4]
-        strength_label.text = 'Password Strength: Sigma'
+        strength_label.text = 'Password Strength: Very Strong'
     
     # Update the pwned label
     if pwned_count > 0:
         pwned_label.color = colors[0]
-        pwned_label.text = f'Your cooked. Seen {pwned_count} times in data breaches'
+        pwned_label.text = f'Password Pwned. Seen {pwned_count} times in data breaches'
     else:
         pwned_label.color = colors[3]
-        pwned_label.text = 'Not pwned! :)'
+        pwned_label.text = 'Not Pwned! :)'
     
     # Use zxcvbn to estimate crack time
     zxcvbn_result = zxcvbn.zxcvbn(password)
     crack_time_label.text = f"Estimated crack time: {zxcvbn_result['crack_times_display']['offline_slow_hashing_1e4_per_second']}"
 
+# Password Hide/Show
 def toggle_password_visibility(event):
-    global password_visible
-    password_input.toggle()
+    global password_visible, toggle_button
     password_visible = not password_visible
-    toggle_button.text = 'Hide' if password_visible else 'Show'
+    if password_visible:
+        password_input.toggle()
+        toggle_button.image = 'icons/hide_icon.png'
+    else:
+        password_input.toggle()
+        toggle_button.image = 'icons/show_icon.png'
 
 # Copy password
 def copy_password(event):
     pyperclip.copy(password_input.text)
-    copy_button.text = 'Copied!'
-    app.after(2000, reset_copy_button)  # Reset the button text after 2 seconds
+    copy_button.image = 'icons/copy_icon_clicked.png'
+    app.after(2000, reset_copy_button)  # Reset the button image after 2 seconds
 
 # Reset copy button text
 def reset_copy_button():
-    copy_button.text = 'Copy'
+    copy_button.image = 'icons/copy_icon.png'
 
 # Suggestions window
 def show_suggestions(event):
     suggestions_window = gp.GooeyPieApp('Password Suggestions')
     suggestions_window.set_grid(2, 1)
     suggestions_label = gp.StyleLabel(suggestions_window, '\n'.join(password_suggestions))
-    suggestions_label.font_name = ('Bradley Hand')
-    suggestions_title = gp.StyleLabel(suggestions_window, 'Try imporving your password with these suggestions:')
-    suggestions_title.font_name = ('Bradley Hand')
+    suggestions_label.font_name = 'Arial'
+    suggestions_title = gp.StyleLabel(suggestions_window, 'Try improving your password with these suggestions:')
+    suggestions_title.font_name = 'Arial'
     suggestions_window.add(suggestions_label, 2, 1)
     suggestions_window.add(suggestions_title, 1, 1)
     suggestions_window._root.iconphoto = lambda *args: None  # Disable iconphoto
     suggestions_window.run()
 
+# Info Window
 def show_info(event):
     global info_window
     info_window = gp.GooeyPieApp('Password Strength Information')
@@ -177,7 +181,7 @@ def show_info(event):
                  "6. Common passwords: Password should not be in the list of common passwords.\n"
                  "Each criterion met adds to the overall strength of the password, calculated as a percentage.")
     info_label = gp.StyleLabel(info_window, info_text)
-    info_label.font_name = ('Bradley Hand')
+    info_label.font_name = 'Arial'
     info_window.add(info_label, 1, 1)
     info_window._root.iconphoto = lambda *args: None  # Disable iconphoto
     info_window.run()
@@ -187,48 +191,48 @@ app = gp.GooeyPieApp('PassGuard')
 
 # Create widgets
 password_label = gp.StyleLabel(app, 'Enter your password:')
-password_label.font_name = ('Bradley Hand')
-
-password_style_label = gp.StyleLabel(app,"Nick")
-password_style_label.font_name = ('Bradley Hand')
+password_label.font_name = 'Arial'
 
 password_input = gp.Secret(app)
 
-toggle_button = gp.Button(app, 'Show', toggle_password_visibility)
+toggle_button = gp.ImageButton(app, 'icons/show_icon.png', toggle_password_visibility)
 
-suggestions_button = gp.Button(app, 'Show Suggestions', show_suggestions)
+suggestions_button = gp.ImageButton(app, 'icons/suggestions_icon.png', show_suggestions)
 
-info_button = gp.Button(app, 'Info', show_info)
+info_button = gp.ImageButton(app, 'icons/info_icon.png', show_info)
 
 check_button = gp.Button(app, 'Submit Password', check_strength)
 
-copy_button = gp.Button(app, 'Copy Password', copy_password)
+copy_button = gp.ImageButton(app, 'icons/copy_icon.png', copy_password)
 
 progress_bar = gp.Progressbar(app)
 
 strength_label = gp.StyleLabel(app, '')
-strength_label.font_name = ('Bradley Hand')
+strength_label.font_name = 'Arial'
 
 pwned_label = gp.StyleLabel(app, '')
-pwned_label.font_name = ('Bradley Hand')
+pwned_label.font_name = 'Arial'
 
 crack_time_label = gp.StyleLabel(app, '')
-crack_time_label.font_name = ('Bradley Hand')
+crack_time_label.font_name = 'Arial'
 
 # Add the widgets
 app.set_grid(8, 3)
-app.set_column_weights(1, 1, 1)
-app.add(password_label, 1, 2, align='center')
-app.add(password_input, 2, 2, align='center')
-app.add(toggle_button, 3, 1, align='center')
-app.add(check_button, 3, 2, align='center')
-app.add(copy_button, 3, 3, align='center')
-app.add(strength_label, 4, 2, align='center')
-app.add(progress_bar, 5, 1, column_span=3, fill=True)
-app.add(pwned_label, 6, 1, column_span=3, align='center')
-app.add(crack_time_label, 7, 1, column_span=3, align='center')
-app.add(suggestions_button, 8, 1, align='left')
-app.add(info_button, 8, 3, align='right')
+app.add(password_label, 1, 1, align='right')
+app.add(password_input, 1, 2, fill=True)
+app.add(toggle_button, 1, 3, align='left')
+app.add(check_button, 2, 2, align='center')
+app.add(progress_bar, 3, 1, column_span=3, fill=True)
+app.add(strength_label, 4, 1, column_span=3, align='center')
+app.add(pwned_label, 5, 1, column_span=3, align='center')
+app.add(crack_time_label, 6, 1, column_span=3, align='center')
+app.add(copy_button, 2, 3, align='center')
+app.add(suggestions_button, 7, 2, align='center')
+app.add(info_button, 7, 3, align='center')
+
+# Set the window size and make it unchangeable
+app._root.geometry('550x350')  # Set the initial size of the window
+app._root.resizable(False, False)  # Make the window size unchangeable
 
 # Run the app
 app.run()
