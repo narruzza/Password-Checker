@@ -93,6 +93,8 @@ def check_strength(event):
     
     # Check if the password has been pwned
     try:
+        response = requests.get("https://haveibeenpwned.com/api/v3/breaches")
+        response.raise_for_status()
         pwned_count = pwnedpasswords.is_password_breached(password)
     except requests.exceptions.RequestException as e:
         pwned_count = None
@@ -122,7 +124,10 @@ def check_strength(event):
         strength_label.text = 'Password Strength: Very Strong'
     
     # Update the pwned label
-    if pwned_count > 0:
+    if pwned_count is None:
+        pwned_label.color = colors[0]
+        pwned_label.text = 'HIBP check not working on current connection'
+    elif pwned_count > 0:
         pwned_label.color = colors[0]
         pwned_label.text = f'Password Pwned. Seen {pwned_count} times in data breaches'
     else:
@@ -130,8 +135,12 @@ def check_strength(event):
         pwned_label.text = 'Not Pwned! :)'
     
     # Use zxcvbn to estimate crack time
-    zxcvbn_result = zxcvbn.zxcvbn(password)
-    crack_time_label.text = f"Estimated crack time: {zxcvbn_result['crack_times_display']['offline_slow_hashing_1e4_per_second']}"
+    try:
+        zxcvbn_result = zxcvbn.zxcvbn(password)
+        crack_time_label.text = f"Estimated crack time: {zxcvbn_result['crack_times_display']['offline_slow_hashing_1e4_per_second']}"
+    except Exception as e:
+        crack_time_label.text = f'Error estimating crack time: {e}'
+        print(f'Exception: {e}')
 
 # Password Hide/Show
 def toggle_password_visibility(event):
@@ -186,6 +195,22 @@ def show_info(event):
     info_window._root.iconphoto = lambda *args: None  # Disable iconphoto
     info_window.run()
 
+# About Window
+def show_about(event):
+    about_window = gp.GooeyPieApp('About PassGuard')
+    about_window.set_grid(1, 1)
+    about_text = ("""Hi, I'm Nick Arruzza, the creator of PassGuard.\n
+                  I'm a student currently studying Year 11 Software Engineering.\n
+                  I enjoy combining my interests in programming and cybersecurity to create useful tools.\n 
+                  I hope you find PassGuard helpful in securing your passwords.\n
+                  Feel free to check out more of my projects on my GitHub.\n
+                  https://github.com/narruzza/Password-Checker""")
+    about_label = gp.StyleLabel(about_window, about_text)
+    about_label.font_name = ('Arial')
+    about_window.add(about_label, 1, 1)
+    about_window._root.iconphoto = lambda *args: None # Disable iconphoto
+    about_window.run()
+
 # Create the app
 app = gp.GooeyPieApp('PassGuard')
 
@@ -204,6 +229,8 @@ info_button = gp.ImageButton(app, 'icons/info_icon.png', show_info)
 check_button = gp.Button(app, 'Submit Password', check_strength)
 
 copy_button = gp.ImageButton(app, 'icons/copy_icon.png', copy_password)
+
+about_button = gp.ImageButton(app, 'icons/about_icon.png', show_about)
 
 progress_bar = gp.Progressbar(app)
 
@@ -229,6 +256,7 @@ app.add(crack_time_label, 6, 1, column_span=3, align='center')
 app.add(copy_button, 2, 3, align='center')
 app.add(suggestions_button, 7, 2, align='center')
 app.add(info_button, 7, 3, align='center')
+app.add(about_button, 7, 1, align='center')
 
 # Set the window size and make it unchangeable
 app._root.geometry('550x350')  # Set the initial size of the window
