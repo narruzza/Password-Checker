@@ -204,7 +204,8 @@ def show_about(event):
                   I enjoy combining my interests in programming and cybersecurity to create useful tools.\n 
                   I hope you find PassGuard helpful in securing your passwords.\n
                   Feel free to check out more of my projects on my GitHub.\n
-                  https://github.com/narruzza/Password-Checker""")
+                  https://github.com/narruzza/Password-Checker\n
+                  MIT License""")
     about_label = gp.StyleLabel(about_window, about_text)
     about_label.font_name = ('Arial')
     about_window.add(about_label, 1, 1)
