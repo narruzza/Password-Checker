@@ -1,6 +1,5 @@
 # Password Strength Checker
-
-![Logo](https://github.com/narruzza/Password-Checker/blob/master/DALL%C2%B7E%20June%203%20Logo%20for%20PassGuard.jpg?raw=true)
+<img src="https://github.com/narruzza/Password-Checker/blob/master/DALL%C2%B7E%20June%203%20Logo%20for%20PassGuard.jpg" alt="alt text" width="400" height="400">
 
 Welcome to the **Password Strength Checker** app! This tool is designed to help users evaluate the strength of their passwords to ensure they are strong and secure.
 
@@ -13,8 +12,7 @@ The Password Strength Checker checks passwords against several criteria includin
 - **Common Passwords Check**: Compares against a list of 10,000 common passwords to avoid easy-to-guess passwords.
 - **Visual Feedback**: Provides a progress bar and descriptive labels to indicate password strength.
 - **HIBP Integration**: Checks if the password has been compromised in any known data breaches.
-
-![](https://github.com/narruzza/Password-Checker/blob/master/June%2018%20Screen%20Recording.gif)
+<img src="https://github.com/narruzza/Password-Checker/blob/master/June%2018%20Screen%20Recording.gif" alt="alt text" width="600" height="400">
 
 ## Installation
 To run the Password Strength Checker, you'll need Python installed on your machine along with the GooeyPie library.
