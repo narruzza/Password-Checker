@@ -18,7 +18,7 @@ The Password Strength Checker checks passwords against several criteria includin
 To run the Password Strength Checker, you'll need Python installed on your machine along with the GooeyPie library.
 
 1. Clone the repository:
-git clone https://github.com/yourusername/password-strength-checker.git
+git clone [https://github.com/yourusername/password-strength-checker.git](https://github.com/narruzza/Password-Checker)
 2. Navigate to the project directory:
 cd password-strength-checker
 3. Install the required libraries:
