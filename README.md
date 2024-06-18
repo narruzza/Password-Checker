@@ -14,6 +14,8 @@ The Password Strength Checker checks passwords against several criteria includin
 - **Visual Feedback**: Provides a progress bar and descriptive labels to indicate password strength.
 - **HIBP Integration**: Checks if the password has been compromised in any known data breaches.
 
+![](https://github.com/narruzza/Password-Checker/blob/master/June%2018%20Screen%20Recording.gif)
+
 ## Installation
 To run the Password Strength Checker, you'll need Python installed on your machine along with the GooeyPie library.
 
