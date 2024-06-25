@@ -245,7 +245,7 @@ crack_time_label = gp.StyleLabel(app, '')
 crack_time_label.font_name = 'Arial'
 
 # Add the widgets
-app.set_grid(8, 3)
+app.set_grid(7, 3)
 app.add(password_label, 1, 1, align='right')
 app.add(password_input, 1, 2, fill=True)
 app.add(toggle_button, 1, 3, align='left')
