@@ -63,14 +63,18 @@ def check_password_strength(password):
         criteria_met += 1
     else:
         suggestions.add("Include at least one uppercase letter.")
-# ISSUES >>>>
+
     # Check for special characters
     special_characters = "!@#$%^&*()-_=+[]{}|;:'\",.<>?/\\`~"
+    has_special = False
     for char in password:
-        if char == any(special_characters):
-            criteria_met += 1
-        else:
-            suggestions.add("Include at least one special character.")
+        if char in special_characters:
+            has_special = True
+            break
+    if has_special:
+        criteria_met += 1
+    else:
+        suggestions.add("Include at least one special character.")
 
     # Check if password is in the common passwords list
     if password in common_passwords:
